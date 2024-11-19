@@ -11,6 +11,10 @@ terraform {
 
 provider "azurerm" {
     features {}
+  client_id       = jsondecode(var.ARM_CREDENTIALS)["clientId"]
+  client_secret   = jsondecode(var.ARM_CREDENTIALS)["clientSecret"]
+  tenant_id       = jsondecode(var.ARM_CREDENTIALS)["tenantId"]
+  subscription_id = jsondecode(var.ARM_CREDENTIALS)["subscriptionId"]
 }
 
 resource "azurerm_resource_group" "example" {
