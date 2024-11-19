@@ -10,10 +10,10 @@ terraform {
 }
 
 provider "azurerm" {
-    features = {}
+    features {}
 }
 
 resource "azurerm_resource_group" "example" {
   name     = "demo-resource-group"
-  location = "East US"
+  location = "West Europe"
 }
