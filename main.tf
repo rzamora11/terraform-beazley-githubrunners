@@ -13,6 +13,8 @@ provider "azurerm" {
   use_msi = true
 }
 
+data "azurerm_subscription" "current" {}
+
 # Resource Group
 resource "azurerm_resource_group" "example" {
   name     = "demo-resource-group-created-by-runner"
