@@ -77,6 +77,6 @@ resource "azurerm_linux_virtual_machine" "example" {
 
   # Removed SSH key configuration
   # Allow password authentication
-  admin_password = "ITWORKS"
+  admin_password = "DoesItWork?"
   disable_password_authentication = false
 }
