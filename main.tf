@@ -1,4 +1,4 @@
-// Terraform configuration for a simplified Azure VM v1
+// Terraform configuration for a simplified Azure VM v0
 terraform {
   required_providers {
     azurerm = {
