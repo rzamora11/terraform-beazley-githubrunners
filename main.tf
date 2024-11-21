@@ -10,10 +10,7 @@ terraform {
 
 provider "azurerm" {
   features {}
-  client_id       = jsondecode(var.ARM_CREDENTIALS)["clientId"]
-  client_secret   = jsondecode(var.ARM_CREDENTIALS)["clientSecret"]
-  tenant_id       = jsondecode(var.ARM_CREDENTIALS)["tenantId"]
-  subscription_id = jsondecode(var.ARM_CREDENTIALS)["subscriptionId"]
+  use_msi = true
 }
 
 # Resource Group
@@ -75,8 +72,21 @@ resource "azurerm_linux_virtual_machine" "example" {
     version   = "latest"
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
   # Removed SSH key configuration
   # Allow password authentication
   admin_password = "DoesItWork?"
   disable_password_authentication = false
+}
+
+data "azurerm_role_definition" "contributor" {
+  name = "Contributor"
+}
+
+resource "azurerm_role_assignment" "example" {
+  scope              = data.azurerm_subscription.current.id
+  role_definition_id = "${data.azurerm_subscription.current.id}${data.azurerm_role_definition.contributor.id}"
+  principal_id       = azurerm_virtual_machine.example.identity[0].principal_id
 }
