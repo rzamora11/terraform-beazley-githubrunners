@@ -1,4 +1,4 @@
-// Test v1
+// Test v2
 terraform {
   required_providers {
     azurerm = {
