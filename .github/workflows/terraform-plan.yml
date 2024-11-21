@@ -6,7 +6,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "main_romanzamora"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "terraform-beazley-githubrunners-v2"
+  TF_WORKSPACE: "terraform-beazley-githubrunners"
   CONFIG_DIRECTORY: "./"
 
 jobs:
