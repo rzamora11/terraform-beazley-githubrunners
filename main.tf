@@ -18,13 +18,13 @@ provider "azurerm" {
 
 # Resource Group
 resource "azurerm_resource_group" "example" {
-  name     = "demo-resource-group"
+  name     = "demo-resource-group-created-by-runner"
   location = "West Europe"
 }
 
 # Virtual Network
 resource "azurerm_virtual_network" "example" {
-  name                = "demo-vnet"
+  name                = "demo-vnet-created-by-runner"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -32,7 +32,7 @@ resource "azurerm_virtual_network" "example" {
 
 # Subnet
 resource "azurerm_subnet" "example" {
-  name                 = "demo-subnet"
+  name                 = "demo-subnet-created-by-runner"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
   address_prefixes     = ["10.0.1.0/24"]
@@ -40,7 +40,7 @@ resource "azurerm_subnet" "example" {
 
 # Network Interface
 resource "azurerm_network_interface" "example" {
-  name                = "demo-nic"
+  name                = "demo-nic-created-by-runner"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
@@ -53,7 +53,7 @@ resource "azurerm_network_interface" "example" {
 
 # Virtual Machine (Simplified)
 resource "azurerm_linux_virtual_machine" "example" {
-  name                = "demo-vm"
+  name                = "demo-vm-created-by-runner"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   size                = "Standard_B1s"  # You can change this to a different size if needed
